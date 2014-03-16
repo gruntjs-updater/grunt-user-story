@@ -1,6 +1,10 @@
+[![Build Status](https://travis-ci.org/piumosso/grunt-user-story.png?branch=master)](https://travis-ci.org/piumosso/grunt-user-story)
+
+[![NPM](https://nodei.co/npm/grunt-user-story.png)](https://nodei.co/npm/grunt-user-story/)
+
 # grunt-user-story
 
-> Grunt plugin for UserStory.js
+Grunt plugin for [UserStory.js](https://github.com/piumosso/UserStory)
 
 ## Getting Started
 
