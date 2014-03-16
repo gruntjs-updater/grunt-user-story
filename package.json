@@ -1,7 +1,7 @@
 {
     "name": "grunt-user-story",
     "description": "Grunt plugin for UserStory.js",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "homepage": "https://github.com/piumosso/grunt-user-story",
     "author": {
         "name": "piumosso",
@@ -31,7 +31,7 @@
         "grunt-contrib-clean": "~0.4.0",
         "grunt-contrib-nodeunit": "~0.2.0",
         "grunt": "~0.4.4",
-        "user-story": "0.0.5"
+        "user-story": "0.0.6"
     },
     "peerDependencies": {
         "grunt": "~0.4.4"

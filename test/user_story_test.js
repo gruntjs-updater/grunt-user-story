@@ -5,11 +5,6 @@ var grunt = require('grunt');
 
 
 exports.user_story = {
-    setUp: function(done){
-        // setup here if necessary
-        done();
-    },
-
     all: function(test){
         test.expect(3);
 

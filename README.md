@@ -3,9 +3,6 @@
 > Grunt plugin for UserStory.js
 
 ## Getting Started
-This plugin requires Grunt `~0.4.4`
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-user-story --save-dev
@@ -17,73 +14,67 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-user-story');
 ```
 
-## The "user_story" task
+## The "userStory" task
 
 ### Overview
-In your project's Gruntfile, add a section named `user_story` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `userStory` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  user_story: {
-    options: {
-      // Task-specific options go here.
+    userStory: {
+        options: {
+            // Task-specific options go here.
+        },
+        your_target: {
+            // Target-specific file lists and/or options go here.
+        },
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.destDir
 Type: `String`
-Default value: `',  '`
+Default value: `null`
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
+A string value that represents the directory in which to save the converted files.
 ```js
 grunt.initConfig({
-  user_story: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    userStory: {
+        options: {
+            destDir: 'output'
+        },
+        src: ['src/1.js', 'src/dir/2.js']
     },
-  },
 });
 ```
+This code will produce in the following files:
+```
+output/src/1.js
+output/src/dir/2.js
+```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+If `destDir` is null, source files will be overwritten with the converted content.
 
+#### options.baseDir
+Type: `String`
+Default value: `null`
+
+A string value that indicates the base directory of files that should be excluded from the directory hierarchy at non-null `destDir`.
 ```js
 grunt.initConfig({
-  user_story: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+    userStory: {
+        options: {
+            destDir: 'output',
+            baseDir: 'src'
+        },
+        src: ['src/1.js', 'src/dir/2.js']
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
 });
 ```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
+This code will produce in the following files:
+```
+output/1.js
+output/dir/2.js
+```

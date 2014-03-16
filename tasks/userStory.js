@@ -8,13 +8,15 @@
 
 'use strict';
 
+var UserStoryParser = require('user-story/lib/UserStoryParser'),
+    path = require('path');
+
 module.exports = function(grunt){
-    var UserStoryParser = require('user-story/lib/UserStoryParser');
 
     grunt.registerMultiTask('userStory', 'Grunt plugin for UserStory.js', function(){
         var options = this.options({
-            destDir: null,
-            verbose: false
+            baseDir: null,
+            destDir: null
         });
 
         this.files.forEach(function(file){
@@ -31,26 +33,32 @@ module.exports = function(grunt){
 
             existingFiles.forEach(function(filepath){
                 var fileContent,
-                    fileParsedContent;
+                    fileParsedContent,
+                    outputFilePath;
 
                 fileContent = grunt.file.read(filepath);
-                console.log('fileContent', fileContent);
                 fileParsedContent = UserStoryParser.parse(fileContent);
-                
-                if (fileContent === fileParsedContent) {
-                    options.verbose && grunt.log.writeln('File "' + filepath + '" don\'t contains log sections.');
-                }
 
-                if (!options.destDir) {
-                    grunt.file.write(filepath, fileParsedContent);
-                    options.verbose && grunt.log.ok('File "' + filepath + '" has been replaced.');
+                if (options.destDir) {
+                    if (options.baseDir && filepath.indexOf(options.baseDir) === 0) {
+                        outputFilePath = path.join(options.destDir, filepath.replace(options.baseDir, ''));
+                    } else {
+                        outputFilePath = path.join(options.destDir, filepath);
+                    }
+
+                    grunt.file.write(outputFilePath, fileParsedContent);
+                    grunt.log.ok('File "' + outputFilePath + '" has been created.');
+                } else {
+                    if (fileContent === fileParsedContent) {
+                        grunt.log.ok('[Skip] File "' + filepath + '" don\'t contains log sections.');
+                        return;
+                    }
+                    outputFilePath = filepath;
+
+                    grunt.file.write(outputFilePath, fileParsedContent);
+                    grunt.log.ok('File "' + outputFilePath + '" has been replaced.');
                 }
             });
-
-
-
         });
-
     });
-
 };

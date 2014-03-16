@@ -8,8 +8,6 @@
 
 'use strict';
 
-////////////////////////////////////////////////////////////   http://gruntjs.com/configuring-tasks#files
-
 module.exports = function(grunt){
 
     grunt.initConfig({
@@ -20,17 +18,10 @@ module.exports = function(grunt){
         userStory: {
             all: {
                 options: {
-                    destDir: 'tmp',
-                    verbose: true
+                    baseDir: 'test/fixtures',
+                    destDir: 'tmp'
                 },
                 src: ['test/fixtures/*.js', 'test/fixtures/**/*.js']
-            },
-
-            first: {
-                options: {
-                    verbose: true
-                },
-                src: 'test/fixtures/1.js'
             }
         },
 
