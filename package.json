@@ -25,7 +25,8 @@
         "node": ">= 0.8.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls"
     },
     "devDependencies": {
         "grunt-contrib-clean": "~0.4.0",
