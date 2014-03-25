@@ -1,7 +1,7 @@
 {
     "name": "grunt-user-story",
     "description": "Grunt plugin for UserStory.js",
-    "version": "0.0.6",
+    "version": "0.0.1",
     "homepage": "https://github.com/piumosso/grunt-user-story",
     "author": {
         "name": "piumosso",
@@ -28,11 +28,14 @@
         "test": "grunt test",
         "coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls"
     },
+    "dependencies": {
+        "user-story": "0.0.8"
+    },
     "devDependencies": {
         "grunt-contrib-clean": "~0.4.0",
         "grunt-contrib-nodeunit": "~0.2.0",
         "grunt": "~0.4.4",
-        "user-story": "0.0.6"
+        "grunt-cli": "0.1.13"
     },
     "peerDependencies": {
         "grunt": "~0.4.4"

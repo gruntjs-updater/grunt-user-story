@@ -8,11 +8,12 @@
 
 'use strict';
 
+
 var UserStoryParser = require('user-story/lib/UserStoryParser'),
     path = require('path');
 
-module.exports = function(grunt){
 
+module.exports = function(grunt){
     grunt.registerMultiTask('userStory', 'Grunt plugin for UserStory.js', function(){
         var options = this.options({
             baseDir: null,
